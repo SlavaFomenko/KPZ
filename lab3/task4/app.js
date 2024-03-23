@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var SmartTextChecker_1 = require("./src/SmartTextChecker");
+var SmartTextReader_1 = require("./src/SmartTextReader");
+var SmartTextReaderLocker_1 = require("./src/SmartTextReaderLocker");
+var basicReader = new SmartTextReader_1.default();
+var checker = new SmartTextChecker_1.default(basicReader);
+var restrictedReader = new SmartTextReaderLocker_1.default(basicReader, 'restricted_files.*');
+console.log('Using basic reader:');
+checker.readTextFile('example.txt');
+console.log('\nUsing restricted reader:');
+restrictedReader.readTextFile('example.txt');
+restrictedReader.readTextFile('restricted_files.txt');
